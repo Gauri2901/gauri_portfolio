@@ -18,7 +18,7 @@ export default function StatusBar({ active }: Props) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        flexWrap: isMobile,
+        flexWrap: isMobile ? 'wrap' : 'nowrap',
         gap: isMobile ? 6 : 12,
         padding: isMobile ? '8px 12px' : '0 16px',
         flexShrink: 0,

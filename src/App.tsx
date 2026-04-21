@@ -12,14 +12,13 @@ import Contact from './components/sections/Contact';
 import { useActiveSection } from './hooks/useActiveSection';
 import { useScrollProgress } from './hooks/useScrollProgress';
 import { useViewport } from './hooks/useViewport';
-import type { Section } from './hooks/useActiveSection';
 
 export default function App() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { isMobile, isTablet } = useViewport();
   const dividerMargin = isMobile ? 16 : isTablet ? 24 : 40;
   const isCompactLayout = isTablet;
-  const active = useActiveSection(scrollRef, isCompactLayout);
+  const [active, scrollToSection] = useActiveSection(scrollRef, isCompactLayout);
   const scrollProgress = useScrollProgress(scrollRef);
 
   useEffect(() => {
@@ -48,28 +47,12 @@ export default function App() {
     };
   }, [isCompactLayout]);
 
-  const scrollTo = (id: Section) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    if (isCompactLayout) {
-      const y = el.getBoundingClientRect().top + window.scrollY - 16;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-      return;
-    }
-
-    if (scrollRef.current) {
-      const top = el.offsetTop;
-      scrollRef.current.scrollTo({ top, behavior: 'smooth' });
-    }
-  };
-
   if (isCompactLayout) {
     return (
       <>
         <PencilCursor />
         <div style={{ minHeight: '100dvh', background: '#FAFAF7' }}>
-          <Sidebar active={active} onNav={scrollTo} scrollProgress={scrollProgress} />
+          <Sidebar active={active} onNav={scrollToSection} scrollProgress={scrollProgress} />
 
           <main>
             <About />
@@ -97,14 +80,14 @@ export default function App() {
       <div
         style={{
           display: 'flex',
-          flexDirection: isTablet ? 'column' : 'row',
+          flexDirection: 'row',
           width: '100%',
           height: '100dvh',
           overflow: 'hidden',
           background: '#FAFAF7',
         }}
       >
-        <Sidebar active={active} onNav={scrollTo} scrollProgress={scrollProgress} />
+        <Sidebar active={active} onNav={scrollToSection} scrollProgress={scrollProgress} />
 
         {/* Right panel */}
         <div style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
