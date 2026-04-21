@@ -223,7 +223,7 @@ export default function About() {
                 Software Engineer
               </div>
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: '#888780', marginTop: 4 }}>
-                // Malkapur, MH
+                // Malkapur, Maharashtra
               </div>
               <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 14 }}>
                 {SOCIAL_LINKS.map(({ icon: Icon, href, label }) => (
@@ -263,11 +263,9 @@ export default function About() {
           <AnimatedSection delay={0.2}><WobblyUnderline /></AnimatedSection>
 
           <AnimatedSection delay={0.3}>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: '#2C2C2A', marginBottom: isMobile ? 24 : 30, maxWidth: 560 }}>
-              Software engineer at <strong>ApexaIQ Technologies</strong>, Shegaon, designing dashboards,
-              REST APIs, and scalable systems that handle <strong>5M+ records</strong>. I also bring an
-              artist's eye into product work, so the interfaces I build are not just functional, but clear,
-              thoughtful, and comfortable to use.
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: '#2C2C2A', marginBottom: isMobile ? 24 : 30, maxWidth: 700 }}>
+              Software engineer at <strong>ApexaIQ Technologies</strong>, Shegaon, building dashboards, APIs, and and systems that scale across millions of records.
+              I bring an artist’s eye into engineering — creating interfaces that are clear, intuitive, and feel right to use.
             </p>
           </AnimatedSection>
 

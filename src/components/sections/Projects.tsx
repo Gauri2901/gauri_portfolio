@@ -22,15 +22,15 @@ function AnimatedSection({ children, delay = 0 }: { children: React.ReactNode; d
 const PROJECTS = [
   {
     name: 'Art-Case',
-    eyebrow: 'Full-stack art commerce platform',
-    // desc: 'A custom artwork request and order-management workflow where users submit requirements, admins set final pricing, and buyers receive order/payment updates.',
+    eyebrow: 'Custom artwork marketplace & request workflow',
+    desc: 'A full-stack platform where users can request personalized artwork, track orders, and complete secure payments through a streamlined, admin-driven workflow.',
     details: [
-      // 'Built role-based admin flows for order tracking, artwork CRUD, activity logs, and customization requests.',
-      // 'Integrated Razorpay payment handling for secure checkout experiences.',
-      // 'Designed the product flow so non-technical art buyers can request personalized artwork without friction.',
+      'Designed a custom request-to-order flow where users submit artwork requirements, admins finalize pricing, and payment links are automatically dispatched.',
+      'Built a role-based admin dashboard for order tracking, artwork CRUD, activity logs, and customization request management.',
+      'Integrated Razorpay for secure payments with automated order confirmations and PDF invoice generation.',
     ],
     tech: ['React', 'TypeScript', 'Node.js', 'MongoDB', 'Razorpay'],
-    links: { github: 'https://github.com/gauriborle', live: '#' },
+    links: { github: 'https://github.com/gauriborle', live: 'https://art-case-frontend.vercel.app/' },
     img: 'https://images.pexels.com/photos/1266808/pexels-photo-1266808.jpeg?auto=compress&cs=tinysrgb&w=900&h=420&fit=crop',
   },
   {
@@ -38,9 +38,9 @@ const PROJECTS = [
     eyebrow: 'Responsive portfolio websites',
     desc: 'Portfolio websites for 3 non-technical clients, translating loose requirements into polished, responsive pages that are easy to maintain.',
     details: [
-      // 'Created clean visual systems for clients who needed simple, professional online presence.',
-      // 'Handled layout, content structure, responsive behavior, and handoff-friendly implementation.',
-      // 'Used lightweight frontend stacks to keep pages fast and deployment simple.',
+      'Created clean visual systems for clients who needed simple, professional online presence.',
+      'Handled layout, content structure, responsive behavior, and handoff-friendly implementation.',
+      'Used lightweight frontend stacks to keep pages fast and deployment simple.',
     ],
     tech: ['React', 'HTML/CSS', 'JavaScript', 'Figma'],
     links: { github: 'https://github.com/gauriborle', live: '#' },

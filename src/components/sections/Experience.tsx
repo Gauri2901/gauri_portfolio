@@ -47,27 +47,27 @@ const EXPERIENCE = [
     company: 'ApexaIQ Technologies',
     role: 'Software Engineer',
     dates: 'Aug 2024 – Present',
-    location: 'Shegoan, MH',
+    location: 'Shegoan, Maharashtra',
     bullets: [
       <>Designed interactive dashboards and reusable UI components using <Highlight>Vue.js and Vuetify</Highlight>, enabling real-time visibility into IT infrastructure, compliance, and security metrics.</>,
-      // <>Engineered scalable REST APIs using Node.js, Express.js, and PostgreSQL, handling <Highlight>5M+ records</Highlight> via indexing, partitioning, and query optimization.</>,
-      // <>Developed a dynamic export and upload feature supporting multiple file formats, reducing manual data operations.</>,
-      // <>Optimized database performance with <Highlight>Sequelize ORM and SQL</Highlight>, eliminating redundant queries and reducing response times under high load.</>,
-      // <>Integrated AI capabilities into core platform workflows to automate repetitive processes; implemented end-to-end test cases across key modules.</>,
-      // <>Diagnosed and resolved <Highlight>80+ critical bugs</Highlight> across frontend and backend systems, improving platform stability.</>,
+      <>Engineered scalable REST APIs using Node.js, Express.js, and PostgreSQL, handling <Highlight>5M+ records</Highlight> via indexing, partitioning, and query optimization.</>,
+      <>Developed a dynamic export and upload feature supporting multiple file formats, reducing manual data operations.</>,
+      <>Optimized database performance with <Highlight>Sequelize ORM and SQL</Highlight>, eliminating redundant queries and reducing response times under high load.</>,
+      <>Integrated AI capabilities into core platform workflows to automate repetitive processes; implemented end-to-end test cases across key modules.</>,
+      <>Diagnosed and resolved <Highlight>80+ critical bugs</Highlight> across frontend and backend systems, improving platform stability.</>,
     ],
   },
   {
     num: '02',
-    company: 'ApexaIQ Technologies',
+    company: 'ApexaIQ Technologies - Remote',
     role: 'Software Engineer Intern',
     dates: 'Jan 2024 – Mar 2024',
-    location: 'Remote',
+    location: 'Milford, USA',
     bullets: [
       <>Developed web scraping pipelines using <Highlight>Selenium and Python</Highlight> to extract and process structured data from external sources for internal research use.</>,
-      // <>Contributed to UX design decisions and assisted in creating wireframes and prototypes to improve user experience across key product flows.</>,
-      // <>Designed and delivered Proof-of-Concept (POC) presentations to mentors, covering research, architecture, and design proposals.</>,
-      // <>Built and maintained reusable UI components and responsive interfaces using Vue.js and Vuetify for final year industry project.</>,
+      <>Contributed to UX design decisions and assisted in creating wireframes and prototypes to improve user experience across key product flows.</>,
+      <>Designed and delivered Proof-of-Concept (POC) presentations to mentors, covering research, architecture, and design proposals.</>,
+      <>Built and maintained reusable UI components and responsive interfaces using Vue.js and Vuetify for final year industry project.</>,
     ],
   },
 ];
@@ -83,7 +83,7 @@ export default function Experience() {
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: '#888780', marginBottom: 8 }}>
             // work history
           </div>
-          <h2 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 24, fontWeight: 500, color: '#2C2C2A' }}>
+          <h2 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 28, fontWeight: 500, color: '#2C2C2A' }}>
             experience
           </h2>
         </div>
@@ -163,22 +163,22 @@ export default function Experience() {
                     <div
                       style={{
                         fontFamily: "'JetBrains Mono', monospace",
-                        fontSize: 15,
+                        fontSize: 16,
                         fontWeight: 500,
                         color: '#2C2C2A',
                         marginBottom: 3,
                       }}
                     >
-                      {exp.company}
+                      {exp.role}
                     </div>
                     <div
                       style={{
                         fontFamily: "'Inter', sans-serif",
-                        fontSize: 13,
+                        fontSize: 14,
                         color: '#888780',
                       }}
                     >
-                      {exp.role}
+                      {exp.company}
                     </div>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: isMobile ? 'flex-start' : 'flex-end', gap: 4 }}>
@@ -227,7 +227,7 @@ export default function Experience() {
                         gap: 8,
                         alignItems: 'flex-start',
                         fontFamily: "'Inter', sans-serif",
-                        fontSize: 13,
+                        fontSize: 13.5,
                         lineHeight: 1.6,
                         color: '#2C2C2A',
                       }}

@@ -19,8 +19,8 @@ const NAV_ITEMS: { id: Section; label: string; icon: LucideIcon }[] = [
 ];
 
 const SOCIAL_LINKS = [
-  { icon: Linkedin, href: 'https://linkedin.com/in/gauriborle', label: 'LinkedIn' },
-  { icon: Github,   href: 'https://github.com/gauriborle',     label: 'GitHub' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/gauri-borle-5112a0216', label: 'LinkedIn' },
+  { icon: Github,   href: 'https://github.com/Gauri2901',     label: 'GitHub' },
   { icon: Mail,     href: 'mailto:gauriborle1002@gmail.com',   label: 'Email' },
 ];
 
@@ -226,7 +226,7 @@ export default function Sidebar({ active, onNav, scrollProgress }: Props) {
         <div style={{ textAlign: 'center', width: '100%' }}>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 600, fontSize: 18, color: '#2C2C2A' }}>Gauri Borle</div>
           <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#888780', marginTop: 5 }}>Software Engineer</div>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: '#888780', marginTop: 6 }}>// Malkapur, MH</div>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: '#888780', marginTop: 6 }}>// Malkapur, Maharashtra</div>
           <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 18 }}>
             {SOCIAL_LINKS.map(({ icon: Icon, href, label }) => (
               <a key={label} href={href} target="_blank" rel="noreferrer" title={label}
@@ -250,7 +250,7 @@ export default function Sidebar({ active, onNav, scrollProgress }: Props) {
             <button key={item.id} onClick={() => onNav(item.id)}
               style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 10, padding: '11px 12px', borderRadius: 8, border: 'none', background: isActive ? '#2C2C2A' : 'transparent', cursor: 'pointer', fontFamily: "'JetBrains Mono', monospace", fontSize: 14, color: isActive ? '#FAFAF7' : '#2C2C2A', transition: 'all 0.15s ease', position: 'relative', textAlign: 'left' }}
               onMouseEnter={e => { if (!isActive) e.currentTarget.style.background = '#ECEAE0'; }}
-onMouseLeave={e => { e.currentTarget.style.background = isActive ? '#2C2C2A' : 'transparent'; }}>
+              onMouseLeave={e => { e.currentTarget.style.background = isActive ? '#2C2C2A' : 'transparent'; }}>
               <Icon size={16} strokeWidth={1.6} style={{ color: isActive ? '#EF9F27' : '#888780', flexShrink: 0 }} />
               {item.label}
               {isActive && <div style={{ position: 'absolute', right: 10, width: 5, height: 5, borderRadius: '50%', background: '#EF9F27' }} />}

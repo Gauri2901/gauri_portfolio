@@ -41,7 +41,7 @@ export default function StatusBar({ active }: Props) {
         )}
       </div>
       <div style={{ display: 'flex', gap: 12, color: '#888780', flexWrap: 'wrap' }}>
-        <span>{isMobile ? 'Malkapur, India' : 'Malkapur, MH · India'}</span>
+        <span>{isMobile ? 'Malkapur, India' : 'Malkapur, Maharashtra · India'}</span>
         {!isTablet && (
           <>
             <span style={{ color: '#888780' }}>·</span>
