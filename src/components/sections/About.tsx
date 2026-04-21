@@ -272,7 +272,7 @@ export default function About() {
           <AnimatedSection delay={0.4}>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <a
-                href="/resume.pdf"
+                href="/Gauri_Borle-Resume.pdf"
                 target="_blank"
                 rel="noreferrer"
                 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 13, padding: isMobile ? '11px 18px' : '11px 24px', borderRadius: 6, border: 'none', background: '#2C2C2A', color: '#FAFAF7', cursor: 'pointer', transition: 'all 0.2s ease', textDecoration: 'none' }}
