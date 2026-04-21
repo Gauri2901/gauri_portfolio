@@ -26,7 +26,7 @@ export default function Achievements() {
       <AnimatedSection>
         <div style={{ marginBottom: 32 }}>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: '#888780', marginBottom: 8 }}>
-            // beyond coursework
+            // leadership & initiatives
           </div>
           <h2 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? 24 : 28, fontWeight: 500, color: '#2C2C2A' }}>
             achievements
@@ -80,9 +80,9 @@ export default function Achievements() {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 13 }}>
                 {[
-                  'Screened 3rd and final year internship candidates',
-                  'Handled technical interviews and shortlisting',
-                  'Supported onboarding and mentored selected interns',
+                  'Led internship recruitment for 3rd and final year candidates',
+                  'Conducted technical interviews and shortlisted candidates',
+                  'Onboarded and mentored interns into real project work with team',
                 ].map((item) => (
                   <div key={item} style={{ display: 'flex', gap: 11, alignItems: 'flex-start' }}>
                     <span

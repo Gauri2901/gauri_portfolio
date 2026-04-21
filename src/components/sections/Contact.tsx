@@ -107,9 +107,9 @@ export default function Contact() {
           <h2 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? 24 : 28, fontWeight: 500, color: '#2C2C2A', marginBottom: 10 }}>
             contact
           </h2>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, lineHeight: 1.7, color: '#5C574F', maxWidth: 620 }}>
+          {/* <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, lineHeight: 1.7, color: '#5C574F', maxWidth: 620 }}>
             Send a note about a role, freelance project, or collaboration. I usually reply within a day.
-          </p>
+          </p> */}
         </div>
       </AnimatedSection>
 
@@ -173,14 +173,14 @@ export default function Contact() {
                 }}
               >
                 <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#1D9E75' }} />
-                available for opportunities
+                available for opportunities, freelance project, or collaboration 
               </div>
 
               <h3 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 20, fontWeight: 500, color: '#2C2C2A', lineHeight: 1.35, marginBottom: 12 }}>
-                Open inbox, clear replies.
+                Get in touch
               </h3>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, lineHeight: 1.7, color: '#5C574F', marginBottom: 22, maxWidth: 440 }}>
-                Share the context, timeline, links, or expectations. The form sends directly to my email and I can reply to you from there.
+                Thanks for exploring my portfolio. Eager to connect with fellow tech enthusiasts! Whether you're pondering a project, seeking collaboration, or just curious,give me a message.
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 22 }}>
@@ -188,7 +188,7 @@ export default function Contact() {
                   { icon: Mail, label: 'email', value: 'gauriborle1002@gmail.com', href: 'mailto:gauriborle1002@gmail.com' },
                   { icon: Phone, label: 'phone', value: '+91 9370675595', href: 'tel:+919370675595' },
                   { icon: MapPin, label: 'location', value: 'Malkapur, Maharashtra, India' },
-                ].map(({ icon: Icon, label, value, href }) => {
+                ].map(({ icon: Icon, label, value }) => {
                   const row = (
                     <>
                       <span
@@ -216,24 +216,7 @@ export default function Contact() {
                     </>
                   );
 
-                  return href ? (
-                    <a
-                      key={label}
-                      href={href}
-                      style={{
-                        display: 'flex',
-                        gap: 11,
-                        alignItems: 'center',
-                        padding: '10px',
-                        borderRadius: 10,
-                        background: '#FAFAF7',
-                        border: '1px solid #E8E4DC',
-                        textDecoration: 'none',
-                      }}
-                    >
-                      {row}
-                    </a>
-                  ) : (
+                  return (
                     <div
                       key={label}
                       style={{

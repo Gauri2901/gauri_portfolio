@@ -155,7 +155,7 @@ const SKILL_GROUPS = [
   },
   {
     title: 'Backend',
-    skills: ['Node.js', 'Express.js', 'PostgreSQL', 'MongoDB', 'Sequelize', 'REST APIs'],
+    skills: ['Node.js', 'Express.js', 'Next.js', 'PostgreSQL', 'MongoDB', 'Sequelize', 'REST APIs'],
   },
   {
     title: 'Concepts',
@@ -173,7 +173,7 @@ export default function Skills() {
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: '#888780', marginBottom: 8 }}>
             // what I know
           </div>
-          <h2 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 24, fontWeight: 500, color: '#2C2C2A' }}>
+          <h2 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 28, fontWeight: 500, color: '#2C2C2A' }}>
             skills
           </h2>
         </div>
