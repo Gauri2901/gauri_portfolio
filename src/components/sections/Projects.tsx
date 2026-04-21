@@ -65,7 +65,7 @@ const PROJECTS: Project[] = [
     ],
     tech: ['React', 'TypeScript', 'Node.js', 'MongoDB', 'Razorpay'],
     links: { github: 'https://github.com/gauriborle', live: 'https://art-case-frontend.vercel.app/' },
-    img: 'public/art-case.png',
+    img: '/art-case.png',
   },
   {
     type: 'freelance-split',
