@@ -11,6 +11,16 @@ const SOCIAL_LINKS = [
   { icon: Mail,     href: 'mailto:gauriborle1002@gmail.com',   label: 'Email' },
 ];
 
+const TERMINAL_LINES = [
+  { text: 'const gauri = {',              color: '#2C2C2A' },
+  { text: '  role: "engineer + artist",', color: '#888780' },
+  { text: '  loves: ["systems", "craft"],',color: '#888780' },
+  { text: '  building: "v2.0 of self",',  color: '#888780' },
+  { text: '};',                           color: '#2C2C2A' },
+  { text: '',                             color: '' },
+  { text: '// ships fast. ships pretty.', color: '#1D9E75' },
+];
+
 function TypewriterName() {
   const [text, setText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
@@ -60,36 +70,104 @@ function WobblyUnderline() {
   );
 }
 
-function SelfPortrait() {
+function FloatingTerminal() {
+  const [visibleLines, setVisibleLines] = useState(0);
+  const [charCount, setCharCount] = useState(0);
+
+  useEffect(() => {
+    if (visibleLines >= TERMINAL_LINES.length) return;
+    const currentLine = TERMINAL_LINES[visibleLines].text;
+    if (charCount < currentLine.length) {
+      const t = setTimeout(() => setCharCount(c => c + 1), 38);
+      return () => clearTimeout(t);
+    } else {
+      const t = setTimeout(() => {
+        setVisibleLines(v => v + 1);
+        setCharCount(0);
+      }, 120);
+      return () => clearTimeout(t);
+    }
+  }, [visibleLines, charCount]);
+
   return (
-    <svg width="220" height="260" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M170 20 L180 15 M175 30 L185 25 M165 35 L178 32" stroke="#E8E4DC" strokeWidth="1.5" strokeLinecap="round"/>
-      <path d="M20 200 L15 210 M30 215 L25 225 M10 220 L18 228" stroke="#E8E4DC" strokeWidth="1.5" strokeLinecap="round"/>
-      <circle cx="100" cy="100" r="55" stroke="#2C2C2A" strokeWidth="1.5" fill="#FEF9EF"/>
-      <path d="M50 90 C55 55, 80 45, 100 45 C120 45, 145 55, 150 90 L148 80 C140 50, 120 38, 100 38 C80 38, 60 50, 52 80Z" fill="#2C2C2A"/>
-      <rect x="76" y="88" width="14" height="10" rx="5" fill="#2C2C2A"/>
-      <rect x="110" y="88" width="14" height="10" rx="5" fill="#2C2C2A"/>
-      <circle cx="82" cy="92" r="2" fill="#FAFAF7"/>
-      <circle cx="116" cy="92" r="2" fill="#FAFAF7"/>
-      <path d="M98 100 L96 112 L100 115 L104 112 L102 100" stroke="#2C2C2A" strokeWidth="1" fill="none"/>
-      <path d="M86 122 C90 128, 110 128, 114 122" stroke="#2C2C2A" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-      <rect x="72" y="155" width="56" height="60" rx="4" fill="#F3F0E8" stroke="#2C2C2A" strokeWidth="1.5"/>
-      <rect x="90" y="148" width="20" height="14" fill="#FEF9EF" stroke="#2C2C2A" strokeWidth="1"/>
-      <rect x="80" y="168" width="40" height="18" rx="3" fill="#2C2C2A"/>
-      <text x="84" y="180" fontFamily="JetBrains Mono, monospace" fontSize="7" fill="#EF9F27">&lt;/dev+art&gt;</text>
-      <path d="M18 80 C22 75, 30 78, 28 85" stroke="#EF9F27" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-      <path d="M172 150 C178 145, 184 148, 182 155" stroke="#EF9F27" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-      <circle cx="28" cy="60" r="3" fill="none" stroke="#E8E4DC" strokeWidth="1.5"/>
-      <circle cx="172" cy="180" r="3" fill="none" stroke="#E8E4DC" strokeWidth="1.5"/>
-      <path d="M155 35 L157 30 L159 35 L164 35 L160 38 L162 43 L157 40 L152 43 L154 38 L150 35Z" fill="#EF9F27" opacity="0.5"/>
-    </svg>
+    <div style={{ animation: 'termFloat 4s ease-in-out infinite', flexShrink: 0 }}>
+      <style>{`
+        @keyframes termFloat {
+          0%, 100% { transform: translateY(0px); }
+          50%       { transform: translateY(-10px); }
+        }
+        @keyframes termBlink {
+          0%, 100% { opacity: 1; }
+          50%       { opacity: 0; }
+        }
+      `}</style>
+
+      <div style={{
+        width: 300,
+        background: '#FAFAF7',
+        border: '1.5px solid #2C2C2A',
+        borderRadius: 10,
+        boxShadow: '5px 5px 0 #2C2C2A',
+        overflow: 'hidden',
+        fontFamily: "'JetBrains Mono', monospace",
+        fontSize: 13,
+      }}>
+        {/* ── Title bar ── */}
+        <div style={{
+          background: '#2C2C2A',
+          padding: '10px 14px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 7,
+        }}>
+          {(['#EF9F27', '#1D9E75', '#E8E4DC'] as const).map((c, i) => (
+            <div key={i} style={{ width: 11, height: 11, borderRadius: '50%', background: c }} />
+          ))}
+          <span style={{ marginLeft: 8, color: '#888780', fontSize: 11 }}>~/gauri/portfolio</span>
+        </div>
+
+        {/* ── Code body ── */}
+        <div style={{ padding: '16px 18px', minHeight: 162 }}>
+          {TERMINAL_LINES.slice(0, visibleLines).map((line, i) => (
+            <div key={i} style={{ color: line.color, lineHeight: 1.9, whiteSpace: 'pre' }}>
+              {line.text}
+            </div>
+          ))}
+
+          {visibleLines < TERMINAL_LINES.length && (
+            <div style={{ color: TERMINAL_LINES[visibleLines].color, lineHeight: 1.9, whiteSpace: 'pre' }}>
+              {TERMINAL_LINES[visibleLines].text.slice(0, charCount)}
+              <span style={{ animation: 'termBlink 0.8s step-end infinite', color: '#EF9F27' }}>▋</span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* ── Amber accent line below ── */}
+      <div style={{
+        height: 3,
+        background: 'linear-gradient(to right, #EF9F27, transparent)',
+        marginTop: 10,
+        borderRadius: 2,
+        width: '60%',
+        marginLeft: 'auto',
+        marginRight: 18,
+      }} />
+    </div>
   );
 }
 
 function AnimatedSection({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const { ref, inView } = useInView(0.1);
   return (
-    <div ref={ref as React.RefObject<HTMLDivElement>} style={{ opacity: inView ? 1 : 0, transform: inView ? 'translateY(0)' : 'translateY(12px)', transition: `opacity 0.5s ease ${delay}s, transform 0.5s ease ${delay}s` }}>
+    <div
+      ref={ref as React.RefObject<HTMLDivElement>}
+      style={{
+        opacity: inView ? 1 : 0,
+        transform: inView ? 'translateY(0)' : 'translateY(12px)',
+        transition: `opacity 0.5s ease ${delay}s, transform 0.5s ease ${delay}s`,
+      }}
+    >
       {children}
     </div>
   );
@@ -99,13 +177,21 @@ export default function About() {
   const { isMobile, isTablet } = useViewport();
 
   return (
-    <section id="about" style={{ padding: isMobile ? '32px 18px 48px' : isTablet ? '40px 28px 56px' : '64px 40px 70px' }}>
-
-      {/* ── Mobile-only: big profile photo at top of about ── */}
+    <section
+      id="about"
+      style={{
+        // ── More breathing room on the left for desktop ──
+        padding: isMobile
+          ? '32px 18px 48px'
+          : isTablet
+          ? '40px 28px 56px'
+          : '64px 48px 70px 56px',
+      }}
+    >
+      {/* ── Mobile / tablet: big profile photo at top ── */}
       {isTablet && (
         <AnimatedSection>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 32 }}>
-            {/* Photo */}
             <div
               style={{
                 width: isMobile ? 110 : 140,
@@ -117,19 +203,18 @@ export default function About() {
                 marginBottom: 16,
               }}
             >
-               <img
-              src="/profilepic.jpeg"
-              alt="Gauri Borle"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: '60% 20%', // 👉 move right + up
-                transform: 'scale(1.9) translate(8px, -2px)', // 👉 right + up
-              }}
-            />   
+              <img
+                src="/profilepic.jpeg"
+                alt="Gauri Borle"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: '60% 20%',
+                  transform: 'scale(1.9) translate(8px, -2px)',
+                }}
+              />
             </div>
-            {/* Name + role + location + socials — centered under photo */}
             <div style={{ textAlign: 'center' }}>
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: isMobile ? 17 : 20, color: '#2C2C2A', letterSpacing: '-0.02em' }}>
                 Gauri Borle
@@ -140,26 +225,32 @@ export default function About() {
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: '#888780', marginTop: 4 }}>
                 // Malkapur, MH
               </div>
-              {/* Social icons */}
               <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 14 }}>
                 {SOCIAL_LINKS.map(({ icon: Icon, href, label }) => (
-                  <a key={label} href={href} target="_blank" rel="noreferrer" title={label}
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    title={label}
                     style={{ width: 36, height: 36, borderRadius: 8, border: '1px solid #E8E4DC', background: '#FAFAF7', color: '#888780', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '1px 1px 0 #E8E4DC', textDecoration: 'none', transition: 'all 0.15s' }}
                     onMouseEnter={e => { e.currentTarget.style.color = '#EF9F27'; e.currentTarget.style.borderColor = '#EF9F27'; }}
-                    onMouseLeave={e => { e.currentTarget.style.color = '#888780'; e.currentTarget.style.borderColor = '#E8E4DC'; }}>
+                    onMouseLeave={e => { e.currentTarget.style.color = '#888780'; e.currentTarget.style.borderColor = '#E8E4DC'; }}
+                  >
                     <Icon size={16} strokeWidth={1.7} />
                   </a>
                 ))}
               </div>
             </div>
           </div>
-          {/* Thin divider */}
           <div style={{ height: 1, background: '#E8E4DC', marginBottom: 32 }} />
         </AnimatedSection>
       )}
 
-      {/* ── Main content ── */}
-      <div style={{ display: 'flex', flexDirection: 'row', gap: 48, alignItems: 'center' }}>
+      {/* ── Main content row ── */}
+      <div style={{ display: 'flex', flexDirection: 'row', gap: 56, alignItems: 'center' }}>
+
+        {/* Left: text content */}
         <div style={{ flex: 1, minWidth: 0 }}>
           <AnimatedSection>
             <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 13, color: '#1D9E75', marginBottom: isMobile ? 18 : 22, display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -172,7 +263,7 @@ export default function About() {
           <AnimatedSection delay={0.2}><WobblyUnderline /></AnimatedSection>
 
           <AnimatedSection delay={0.3}>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: '#2C2C2A', marginBottom: isMobile ? 24 : 30, maxWidth: 650 }}>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: isMobile ? 15 : 17, lineHeight: 1.8, color: '#2C2C2A', marginBottom: isMobile ? 24 : 30, maxWidth: 560 }}>
               Software engineer at <strong>ApexaIQ Technologies</strong>, Shegaon, designing dashboards,
               REST APIs, and scalable systems that handle <strong>5M+ records</strong>. I also bring an
               artist's eye into product work, so the interfaces I build are not just functional, but clear,
@@ -182,29 +273,32 @@ export default function About() {
 
           <AnimatedSection delay={0.4}>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-              <a href="/resume.pdf" target="_blank" rel="noreferrer"
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noreferrer"
                 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 13, padding: isMobile ? '11px 18px' : '11px 24px', borderRadius: 6, border: 'none', background: '#2C2C2A', color: '#FAFAF7', cursor: 'pointer', transition: 'all 0.2s ease', textDecoration: 'none' }}
                 onMouseEnter={e => { e.currentTarget.style.background = '#EF9F27'; e.currentTarget.style.color = '#2C2C2A'; }}
-                onMouseLeave={e => { e.currentTarget.style.background = '#2C2C2A'; e.currentTarget.style.color = '#FAFAF7'; }}>
+                onMouseLeave={e => { e.currentTarget.style.background = '#2C2C2A'; e.currentTarget.style.color = '#FAFAF7'; }}
+              >
                 explore cv →
               </a>
               <button
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 13, padding: isMobile ? '11px 18px' : '11px 24px', borderRadius: 6, border: '1.5px solid #2C2C2A', background: 'transparent', color: '#2C2C2A', cursor: 'pointer', transition: 'all 0.2s ease' }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = '#EF9F27'; e.currentTarget.style.color = '#BA7517'; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = '#2C2C2A'; e.currentTarget.style.color = '#2C2C2A'; }}>
+                onMouseLeave={e => { e.currentTarget.style.borderColor = '#2C2C2A'; e.currentTarget.style.color = '#2C2C2A'; }}
+              >
                 say hello
               </button>
             </div>
           </AnimatedSection>
         </div>
 
-        {/* Self-portrait — desktop only */}
+        {/* Right: floating terminal — desktop only */}
         {!isTablet && (
-          <AnimatedSection delay={0.2}>
-            <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <SelfPortrait />
-            </div>
+          <AnimatedSection delay={0.25}>
+            <FloatingTerminal />
           </AnimatedSection>
         )}
       </div>
