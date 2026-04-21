@@ -4,6 +4,8 @@ export default function PencilCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 1024) return;
+
     const move = (e: MouseEvent) => {
       if (!cursorRef.current) return;
       cursorRef.current.style.left = `${e.clientX}px`;
@@ -34,6 +36,7 @@ export default function PencilCursor() {
         zIndex: 9999,
         transform: 'translate(-4px, -20px)',
         transition: 'opacity 0.15s',
+        opacity: 0,
       }}
     >
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useInView } from '../../hooks/useInView';
+import { useViewport } from '../../hooks/useViewport';
 
 const FULL_NAME = 'Gauri Sanjay Borle';
 
@@ -54,6 +55,7 @@ function TypewriterName() {
 function WobblyUnderline() {
   const pathRef = useRef<SVGPathElement>(null);
   const { ref, inView } = useInView(0.5);
+  const { isMobile } = useViewport();
 
   useEffect(() => {
     const path = pathRef.current;
@@ -72,7 +74,7 @@ function WobblyUnderline() {
       <em
         style={{
           fontFamily: "'Inter', sans-serif",
-          fontSize: 20,
+          fontSize: isMobile ? 17 : 20,
           fontStyle: 'italic',
           color: '#2C2C2A',
           fontWeight: 400,
@@ -141,9 +143,11 @@ function AnimatedSection({ children, delay = 0 }: { children: React.ReactNode; d
 }
 
 export default function About() {
+  const { isMobile, isTablet } = useViewport();
+
   return (
-    <section id="about" style={{ padding: '64px 40px 70px' }}>
-      <div style={{ display: 'flex', gap: 48, alignItems: 'center' }}>
+    <section id="about" style={{ padding: isMobile ? '36px 16px 48px' : isTablet ? '48px 24px 56px' : '64px 40px 70px' }}>
+      <div style={{ display: 'flex', flexDirection: isTablet ? 'column-reverse' : 'row', gap: isMobile ? 28 : 48, alignItems: 'center' }}>
         <div style={{ flex: 1, minWidth: 0 }}>
           <AnimatedSection>
             <div
@@ -151,7 +155,7 @@ export default function About() {
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: 13,
                 color: '#1D9E75',
-                marginBottom: 22,
+                marginBottom: isMobile ? 18 : 22,
                 display: 'flex',
                 alignItems: 'center',
                 gap: 8,
@@ -182,10 +186,10 @@ export default function About() {
             <p
               style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: 17,
+                fontSize: isMobile ? 15 : 17,
                 lineHeight: 1.8,
                 color: '#2C2C2A',
-                marginBottom: 30,
+                marginBottom: isMobile ? 24 : 30,
                 maxWidth: 650,
               }}
             >
@@ -205,7 +209,7 @@ export default function About() {
                 style={{
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: 13,
-                  padding: '11px 24px',
+                  padding: isMobile ? '11px 18px' : '11px 24px',
                   borderRadius: 6,
                   border: 'none',
                   background: '#2C2C2A',
@@ -230,7 +234,7 @@ export default function About() {
                 style={{
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: 13,
-                  padding: '11px 24px',
+                  padding: isMobile ? '11px 18px' : '11px 24px',
                   borderRadius: 6,
                   border: '1.5px solid #2C2C2A',
                   background: 'transparent',
@@ -253,18 +257,20 @@ export default function About() {
           </AnimatedSection>
         </div>
 
-        <AnimatedSection delay={0.2}>
-          <div
-            style={{
-              flexShrink: 0,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <SelfPortrait />
-          </div>
-        </AnimatedSection>
+        {!isTablet && (
+          <AnimatedSection delay={0.2}>
+            <div
+              style={{
+                flexShrink: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <SelfPortrait />
+            </div>
+          </AnimatedSection>
+        )}
       </div>
     </section>
   );

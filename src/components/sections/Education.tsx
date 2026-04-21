@@ -1,5 +1,6 @@
 import { Star } from 'lucide-react';
 import { useInView } from '../../hooks/useInView';
+import { useViewport } from '../../hooks/useViewport';
 
 function AnimatedSection({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const { ref, inView } = useInView(0.1);
@@ -18,14 +19,16 @@ function AnimatedSection({ children, delay = 0 }: { children: React.ReactNode; d
 }
 
 export default function Education() {
+  const { isMobile, isTablet } = useViewport();
+
   return (
-    <section id="education" style={{ padding: '44px 40px 64px' }}>
+    <section id="education" style={{ padding: isMobile ? '36px 16px 48px' : isTablet ? '40px 24px 52px' : '44px 40px 64px' }}>
       <AnimatedSection>
         <div style={{ marginBottom: 32 }}>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: '#888780', marginBottom: 8 }}>
             // academic background
           </div>
-          <h2 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 28, fontWeight: 500, color: '#2C2C2A' }}>
+          <h2 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? 24 : 28, fontWeight: 500, color: '#2C2C2A' }}>
             education
           </h2>
         </div>
@@ -38,7 +41,7 @@ export default function Education() {
             borderRadius: '0 10px 10px 0',
             border: '1px solid #E8E4DC',
             borderLeft: '3px solid #E8E4DC',
-            padding: '22px 26px',
+            padding: isMobile ? '18px 16px' : '22px 26px',
             boxShadow: '2px 2px 0 #E8E4DC',
             position: 'relative',
             overflow: 'hidden',
@@ -55,18 +58,20 @@ export default function Education() {
               pointerEvents: 'none',
             }}
           />
-          <div
-            style={{
-              position: 'absolute',
-              right: 22,
-              top: 18,
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: 11,
-              color: '#888780',
-            }}
-          >
-            education.note
-          </div>
+          {!isMobile && (
+            <div
+              style={{
+                position: 'absolute',
+                right: 22,
+                top: 18,
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 11,
+                color: '#888780',
+              }}
+            >
+              education.note
+            </div>
+          )}
 
           <div
             style={{

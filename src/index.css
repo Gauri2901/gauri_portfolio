@@ -2,11 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body,
 #root {
   width: 100%;
-  min-width: 100%;
+  min-width: 0;
   height: 100%;
   margin: 0;
 }
@@ -14,4 +20,18 @@ body,
 body {
   overflow: hidden;
   background: #FAFAF7;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }

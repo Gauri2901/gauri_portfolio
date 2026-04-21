@@ -1,5 +1,6 @@
 import { Check, Mic, Users } from 'lucide-react';
 import { useInView } from '../../hooks/useInView';
+import { useViewport } from '../../hooks/useViewport';
 
 function AnimatedSection({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const { ref, inView } = useInView(0.1);
@@ -18,14 +19,16 @@ function AnimatedSection({ children, delay = 0 }: { children: React.ReactNode; d
 }
 
 export default function Achievements() {
+  const { isMobile, isTablet } = useViewport();
+
   return (
-    <section id="achievements" style={{ padding: '44px 40px 66px' }}>
+    <section id="achievements" style={{ padding: isMobile ? '36px 16px 48px' : isTablet ? '40px 24px 52px' : '44px 40px 66px' }}>
       <AnimatedSection>
         <div style={{ marginBottom: 32 }}>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: '#888780', marginBottom: 8 }}>
             // beyond coursework
           </div>
-          <h2 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 28, fontWeight: 500, color: '#2C2C2A' }}>
+          <h2 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? 24 : 28, fontWeight: 500, color: '#2C2C2A' }}>
             achievements
           </h2>
         </div>
@@ -34,7 +37,7 @@ export default function Achievements() {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'minmax(320px, 0.95fr) minmax(320px, 1.05fr)',
+          gridTemplateColumns: isTablet ? '1fr' : 'minmax(320px, 0.95fr) minmax(320px, 1.05fr)',
           gap: 22,
           alignItems: 'stretch',
         }}
@@ -67,7 +70,7 @@ export default function Achievements() {
               <Users size={18} strokeWidth={1.6} color="#888780" />
             </div>
 
-            <div style={{ padding: '22px 24px' }}>
+            <div style={{ padding: isMobile ? '18px 16px' : '22px 24px' }}>
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: '#888780', marginBottom: 8 }}>
                 // ApexaIQ Technologies
               </div>
@@ -120,23 +123,25 @@ export default function Achievements() {
               position: 'relative',
               overflow: 'hidden',
               display: 'grid',
-              gridTemplateColumns: '82px 1fr',
+              gridTemplateColumns: isMobile ? '1fr' : '82px 1fr',
             }}
           >
             <div
               style={{
                 background: '#F3F0E8',
-                borderRight: '1px dashed #D8D1C6',
+                borderRight: isMobile ? 'none' : '1px dashed #D8D1C6',
+                borderBottom: isMobile ? '1px dashed #D8D1C6' : 'none',
                 color: '#2C2C2A',
                 display: 'flex',
-                flexDirection: 'column',
+                flexDirection: isMobile ? 'row' : 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: 14,
                 position: 'relative',
+                padding: isMobile ? '14px 16px' : 0,
               }}
             >
-              {[24, 68, 112, 156, 200, 244].map((top) => (
+              {!isMobile && [24, 68, 112, 156, 200, 244].map((top) => (
                 <span
                   key={top}
                   style={{
@@ -154,8 +159,8 @@ export default function Achievements() {
               <Mic size={25} strokeWidth={1.7} color="#BA7517" />
               <span
                 style={{
-                  writingMode: 'vertical-rl',
-                  transform: 'rotate(180deg)',
+                  writingMode: isMobile ? 'horizontal-tb' : 'vertical-rl',
+                  transform: isMobile ? 'none' : 'rotate(180deg)',
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: 11,
                   color: '#888780',
@@ -166,7 +171,7 @@ export default function Achievements() {
               </span>
             </div>
 
-            <div style={{ padding: '24px 26px', background: '#FAFAF7' }}>
+            <div style={{ padding: isMobile ? '18px 16px' : '24px 26px', background: '#FAFAF7' }}>
               <div
                 style={{
                   display: 'inline-block',

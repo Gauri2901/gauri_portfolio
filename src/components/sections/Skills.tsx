@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useInView } from '../../hooks/useInView';
+import { useViewport } from '../../hooks/useViewport';
 
 function AnimatedSection({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const { ref, inView } = useInView(0.1);
@@ -163,8 +164,10 @@ const SKILL_GROUPS = [
 ];
 
 export default function Skills() {
+  const { isMobile, isTablet } = useViewport();
+
   return (
-    <section id="skills" style={{ padding: '40px 40px 60px' }}>
+    <section id="skills" style={{ padding: isMobile ? '32px 16px 48px' : isTablet ? '36px 24px 52px' : '40px 40px 60px' }}>
       <AnimatedSection>
         <div style={{ marginBottom: 36 }}>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: '#888780', marginBottom: 8 }}>
@@ -176,7 +179,7 @@ export default function Skills() {
         </div>
       </AnimatedSection>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 32px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: isTablet ? '1fr' : '1fr 1fr', gap: isTablet ? 8 : '0 32px' }}>
         {SKILL_GROUPS.map((group, i) => (
           <BracketGroup key={group.title} title={group.title} skills={group.skills} delay={i * 0.1} />
         ))}

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { ArrowUpRight, Github, Linkedin, Mail, MapPin, Phone, Send } from 'lucide-react';
 import { useInView } from '../../hooks/useInView';
+import { useViewport } from '../../hooks/useViewport';
 
 function AnimatedSection({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const { ref, inView } = useInView(0.1);
@@ -43,6 +44,7 @@ const LABEL_STYLE = {
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const { isMobile, isTablet } = useViewport();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,13 +98,13 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" style={{ padding: '48px 40px 70px' }}>
+    <section id="contact" style={{ padding: isMobile ? '36px 16px 48px' : isTablet ? '40px 24px 56px' : '48px 40px 70px' }}>
       <AnimatedSection>
         <div style={{ marginBottom: 34 }}>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: '#888780', marginBottom: 8 }}>
             // let's talk
           </div>
-          <h2 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 28, fontWeight: 500, color: '#2C2C2A', marginBottom: 10 }}>
+          <h2 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? 24 : 28, fontWeight: 500, color: '#2C2C2A', marginBottom: 10 }}>
             contact
           </h2>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 15, lineHeight: 1.7, color: '#5C574F', maxWidth: 620 }}>
@@ -114,7 +116,7 @@ export default function Contact() {
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'minmax(300px, 0.88fr) minmax(420px, 1.12fr)',
+          gridTemplateColumns: isTablet ? '1fr' : 'minmax(300px, 0.88fr) minmax(420px, 1.12fr)',
           gap: 24,
           alignItems: 'start',
         }}
@@ -125,7 +127,7 @@ export default function Contact() {
               background: '#FAFAF7',
               border: '1px solid #E8E4DC',
               borderRadius: 12,
-              padding: 24,
+              padding: isMobile ? 18 : 24,
               boxShadow: '2px 2px 0 #E8E4DC',
               position: 'relative',
               overflow: 'hidden',
@@ -142,19 +144,21 @@ export default function Contact() {
                 opacity: 0.38,
               }}
             />
-            <div
-              style={{
-                position: 'absolute',
-                right: 18,
-                top: 18,
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: 48,
-                color: '#E8E4DC',
-                lineHeight: 1,
-              }}
-            >
-              @
-            </div>
+            {!isMobile && (
+              <div
+                style={{
+                  position: 'absolute',
+                  right: 18,
+                  top: 18,
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: 48,
+                  color: '#E8E4DC',
+                  lineHeight: 1,
+                }}
+              >
+                @
+              </div>
+            )}
 
             <div style={{ position: 'relative' }}>
               <div
@@ -291,25 +295,27 @@ export default function Contact() {
               background: '#FAFAF7',
               border: '1px solid #E8E4DC',
               borderRadius: 12,
-              padding: 24,
+              padding: isMobile ? 18 : 24,
               boxShadow: '2px 2px 0 #E8E4DC',
               position: 'relative',
             }}
           >
-            <div
-              style={{
-                position: 'absolute',
-                top: 17,
-                right: 22,
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: 11,
-                color: '#888780',
-              }}
-            >
-              message.txt
-            </div>
+            {!isMobile && (
+              <div
+                style={{
+                  position: 'absolute',
+                  top: 17,
+                  right: 22,
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: 11,
+                  color: '#888780',
+                }}
+              >
+                message.txt
+              </div>
+            )}
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 14, marginTop: 12 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, minmax(0, 1fr))', gap: 14, marginTop: 12 }}>
               <div>
                 <label style={LABEL_STYLE}>name</label>
                 <input

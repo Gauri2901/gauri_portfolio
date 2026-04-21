@@ -1,4 +1,5 @@
 import { useInView } from '../../hooks/useInView';
+import { useViewport } from '../../hooks/useViewport';
 
 function AnimatedSection({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const { ref, inView } = useInView(0.1);
@@ -72,8 +73,11 @@ const EXPERIENCE = [
 ];
 
 export default function Experience() {
+  const { isMobile, isTablet } = useViewport();
+  const showTimeline = !isMobile;
+
   return (
-    <section id="experience" style={{ padding: '40px 40px 60px' }}>
+    <section id="experience" style={{ padding: isMobile ? '32px 16px 48px' : isTablet ? '36px 24px 52px' : '40px 40px 60px' }}>
       <AnimatedSection>
         <div style={{ marginBottom: 36 }}>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: '#888780', marginBottom: 8 }}>
@@ -85,63 +89,70 @@ export default function Experience() {
         </div>
       </AnimatedSection>
 
-      <div style={{ position: 'relative', paddingLeft: 52 }}>
+      <div style={{ position: 'relative', paddingLeft: showTimeline ? 52 : 0 }}>
         {/* Vertical timeline line */}
-        <div
-          style={{
-            position: 'absolute',
-            left: 32,
-            top: 0,
-            bottom: 0,
-            width: 1,
-            background: '#E8E4DC',
-          }}
-        />
+        {showTimeline && (
+          <div
+            style={{
+              position: 'absolute',
+              left: 32,
+              top: 0,
+              bottom: 0,
+              width: 1,
+              background: '#E8E4DC',
+            }}
+          />
+        )}
 
         {EXPERIENCE.map((exp, idx) => (
           <AnimatedSection key={exp.num} delay={idx * 0.15}>
             <div style={{ position: 'relative', marginBottom: 40 }}>
               {/* Line number gutter */}
-              <div
-                style={{
-                  position: 'absolute',
-                  left: -42,
-                  top: 6,
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: 11,
-                  color: '#888780',
-                  userSelect: 'none',
-                }}
-              >
-                {exp.num}
-              </div>
+              {showTimeline && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    left: -42,
+                    top: 6,
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: 11,
+                    color: '#888780',
+                    userSelect: 'none',
+                  }}
+                >
+                  {exp.num}
+                </div>
+              )}
 
               {/* Timeline dot */}
-              <div
-                style={{
-                  position: 'absolute',
-                  left: -22,
-                  top: 8,
-                  width: 8,
-                  height: 8,
-                  borderRadius: '50%',
-                  background: '#EF9F27',
-                  border: '2px solid #F3F0E8',
-                }}
-              />
+              {showTimeline && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    left: -22,
+                    top: 8,
+                    width: 8,
+                    height: 8,
+                    borderRadius: '50%',
+                    background: '#EF9F27',
+                    border: '2px solid #F3F0E8',
+                  }}
+                />
+              )}
 
               <div
                 style={{
                   background: '#FAFAF7',
                   border: '1px solid #E8E4DC',
                   borderRadius: 8,
-                  padding: '20px 24px',
+                  padding: isMobile ? '18px 16px' : '20px 24px',
                 }}
               >
                 <div
                   style={{
                     display: 'flex',
                     justifyContent: 'space-between',
+                    flexDirection: isMobile ? 'column' : 'row',
                     alignItems: 'flex-start',
                     flexWrap: 'wrap',
                     gap: 8,
@@ -170,7 +181,7 @@ export default function Experience() {
                       {exp.role}
                     </div>
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4 }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: isMobile ? 'flex-start' : 'flex-end', gap: 4 }}>
                     <div
                       style={{
                         fontFamily: "'JetBrains Mono', monospace",
@@ -180,6 +191,17 @@ export default function Experience() {
                     >
                       {exp.dates}
                     </div>
+                    {!showTimeline && (
+                      <div
+                        style={{
+                          fontFamily: "'JetBrains Mono', monospace",
+                          fontSize: 11,
+                          color: '#888780',
+                        }}
+                      >
+                        #{exp.num}
+                      </div>
+                    )}
                     <div
                       style={{
                         fontFamily: "'JetBrains Mono', monospace",

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Github, ExternalLink } from 'lucide-react';
 import { useInView } from '../../hooks/useInView';
+import { useViewport } from '../../hooks/useViewport';
 
 function AnimatedSection({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const { ref, inView } = useInView(0.1);
@@ -22,11 +23,11 @@ const PROJECTS = [
   {
     name: 'Art-Case',
     eyebrow: 'Full-stack art commerce platform',
-    desc: 'A custom artwork request and order-management workflow where users submit requirements, admins set final pricing, and buyers receive order/payment updates.',
+    // desc: 'A custom artwork request and order-management workflow where users submit requirements, admins set final pricing, and buyers receive order/payment updates.',
     details: [
-      'Built role-based admin flows for order tracking, artwork CRUD, activity logs, and customization requests.',
-      'Integrated Razorpay payment handling for secure checkout experiences.',
-      'Designed the product flow so non-technical art buyers can request personalized artwork without friction.',
+      // 'Built role-based admin flows for order tracking, artwork CRUD, activity logs, and customization requests.',
+      // 'Integrated Razorpay payment handling for secure checkout experiences.',
+      // 'Designed the product flow so non-technical art buyers can request personalized artwork without friction.',
     ],
     tech: ['React', 'TypeScript', 'Node.js', 'MongoDB', 'Razorpay'],
     links: { github: 'https://github.com/gauriborle', live: '#' },
@@ -37,9 +38,9 @@ const PROJECTS = [
     eyebrow: 'Responsive portfolio websites',
     desc: 'Portfolio websites for 3 non-technical clients, translating loose requirements into polished, responsive pages that are easy to maintain.',
     details: [
-      'Created clean visual systems for clients who needed simple, professional online presence.',
-      'Handled layout, content structure, responsive behavior, and handoff-friendly implementation.',
-      'Used lightweight frontend stacks to keep pages fast and deployment simple.',
+      // 'Created clean visual systems for clients who needed simple, professional online presence.',
+      // 'Handled layout, content structure, responsive behavior, and handoff-friendly implementation.',
+      // 'Used lightweight frontend stacks to keep pages fast and deployment simple.',
     ],
     tech: ['React', 'HTML/CSS', 'JavaScript', 'Figma'],
     links: { github: 'https://github.com/gauriborle', live: '#' },
@@ -49,6 +50,7 @@ const PROJECTS = [
 
 function ProjectCard({ project, index }: { project: typeof PROJECTS[number]; index: number }) {
   const [hovered, setHovered] = useState(false);
+  const { isMobile, isTablet } = useViewport();
 
   return (
     <AnimatedSection delay={index * 0.12}>
@@ -57,7 +59,7 @@ function ProjectCard({ project, index }: { project: typeof PROJECTS[number]; ind
         onMouseLeave={() => setHovered(false)}
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gridTemplateColumns: isTablet ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: 0,
           border: `1px solid ${hovered ? '#EF9F27' : '#E8E4DC'}`,
           borderRadius: 14,
@@ -68,7 +70,7 @@ function ProjectCard({ project, index }: { project: typeof PROJECTS[number]; ind
           transition: 'all 0.2s ease',
         }}
       >
-        <div style={{ position: 'relative', minHeight: 280, overflow: 'hidden', background: '#F3F0E8' }}>
+        <div style={{ position: 'relative', minHeight: isMobile ? 220 : 280, overflow: 'hidden', background: '#F3F0E8' }}>
           <img
             src={project.img}
             alt={project.name}
@@ -91,8 +93,8 @@ function ProjectCard({ project, index }: { project: typeof PROJECTS[number]; ind
           <div
             style={{
               position: 'absolute',
-              left: 18,
-              bottom: 18,
+              left: isMobile ? 14 : 18,
+              bottom: isMobile ? 14 : 18,
               fontFamily: "'JetBrains Mono', monospace",
               fontSize: 12,
               color: '#2C2C2A',
@@ -106,14 +108,14 @@ function ProjectCard({ project, index }: { project: typeof PROJECTS[number]; ind
           </div>
         </div>
 
-        <div style={{ padding: '28px 30px' }}>
+        <div style={{ padding: isMobile ? '20px 16px' : isTablet ? '24px 22px' : '28px 30px' }}>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: '#BA7517', marginBottom: 10 }}>
             // {project.eyebrow}
           </div>
           <h3
             style={{
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: 24,
+              fontSize: isMobile ? 20 : 24,
               fontWeight: 500,
               color: '#2C2C2A',
               marginBottom: 12,
@@ -121,38 +123,42 @@ function ProjectCard({ project, index }: { project: typeof PROJECTS[number]; ind
           >
             {project.name}
           </h3>
-          <p
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: 15,
-              color: '#2C2C2A',
-              lineHeight: 1.7,
-              marginBottom: 18,
-              maxWidth: 720,
-            }}
-          >
-            {project.desc}
-          </p>
+          {project.desc && (
+            <p
+              style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: 14,
+                color: '#2C2C2A',
+                lineHeight: 1.7,
+                marginBottom: 18,
+                maxWidth: 720,
+              }}
+            >
+              {project.desc}
+            </p>
+          )}
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginBottom: 20 }}>
-            {project.details.map((detail) => (
-              <div
-                key={detail}
-                style={{
-                  display: 'flex',
-                  gap: 10,
-                  alignItems: 'flex-start',
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: 13,
-                  lineHeight: 1.6,
-                  color: '#2C2C2A',
-                }}
-              >
-                <span style={{ color: '#EF9F27', fontFamily: "'JetBrains Mono', monospace", marginTop: 1 }}>~</span>
-                <span>{detail}</span>
-              </div>
-            ))}
-          </div>
+          {project.details.length > 0 && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginBottom: 20 }}>
+              {project.details.map((detail) => (
+                <div
+                  key={detail}
+                  style={{
+                    display: 'flex',
+                    gap: 10,
+                    alignItems: 'flex-start',
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: 13,
+                    lineHeight: 1.6,
+                    color: '#2C2C2A',
+                  }}
+                >
+                  <span style={{ color: '#EF9F27', fontFamily: "'JetBrains Mono', monospace", marginTop: 1 }}>~</span>
+                  <span>{detail}</span>
+                </div>
+              ))}
+            </div>
+          )}
 
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 22 }}>
             {project.tech.map((tech) => (
@@ -224,14 +230,16 @@ function ProjectCard({ project, index }: { project: typeof PROJECTS[number]; ind
 }
 
 export default function Projects() {
+  const { isMobile, isTablet } = useViewport();
+
   return (
-    <section id="projects" style={{ padding: '46px 40px 70px' }}>
+    <section id="projects" style={{ padding: isMobile ? '36px 16px 48px' : isTablet ? '40px 24px 56px' : '46px 40px 70px' }}>
       <AnimatedSection>
         <div style={{ marginBottom: 34 }}>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: '#888780', marginBottom: 8 }}>
             // things I built
           </div>
-          <h2 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 28, fontWeight: 500, color: '#2C2C2A' }}>
+          <h2 style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: isMobile ? 24 : 28, fontWeight: 500, color: '#2C2C2A' }}>
             projects
           </h2>
         </div>
