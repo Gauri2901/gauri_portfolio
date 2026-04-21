@@ -36,7 +36,7 @@ function TornEdge({ color }: { color: string }) {
 const PROJECTS = [
   {
     name: 'Art-Case',
-    desc: 'Full-stack art marketplace with gallery browsing, order management, and secure payments.',
+    // desc: 'Full-stack art marketplace with gallery browsing, order management, and secure payments.',
     tech: ['React', 'TypeScript', 'Node.js', 'MongoDB', 'Razorpay'],
     links: { github: 'https://github.com/gauriborle', live: '#' },
     img: 'https://images.pexels.com/photos/1266808/pexels-photo-1266808.jpeg?auto=compress&cs=tinysrgb&w=600&h=280&fit=crop',

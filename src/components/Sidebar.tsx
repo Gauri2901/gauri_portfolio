@@ -1,7 +1,8 @@
 import { Linkedin, Github, Mail, User, Briefcase, FolderOpen, Wrench, GraduationCap, MessageCircle } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import type { Section } from '../hooks/useActiveSection';
 
-const NAV_ITEMS: { id: Section; label: string; icon: React.ComponentType<{ size?: number; strokeWidth?: number }> }[] = [
+const NAV_ITEMS: { id: Section; label: string; icon: LucideIcon }[] = [
   { id: 'about', label: 'about', icon: User },
   { id: 'experience', label: 'experience', icon: Briefcase },
   { id: 'projects', label: 'projects', icon: FolderOpen },

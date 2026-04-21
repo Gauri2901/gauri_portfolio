@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { Linkedin, Github, Mail } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
 import { useInView } from '../../hooks/useInView';
 
 function AnimatedSection({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -39,12 +39,38 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('sending');
-    const { error } = await supabase.from('contact_messages').insert([form]);
-    if (error) {
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error('Missing EmailJS environment variables.');
       setStatus('error');
-    } else {
+      return;
+    }
+
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          title: `Portfolio Contact from ${form.name}`,
+          name: form.name,
+          email: form.email,
+          from_name: form.name,
+          from_email: form.email,
+          reply_to: form.email,
+          message: form.message,
+        },
+        { publicKey },
+      );
+
       setStatus('sent');
       setForm({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('EmailJS send failed:', error);
+      setStatus('error');
     }
   };
 

@@ -49,11 +49,11 @@ const EXPERIENCE = [
     location: 'Shegoan, MH',
     bullets: [
       <>Designed interactive dashboards and reusable UI components using <Highlight>Vue.js and Vuetify</Highlight>, enabling real-time visibility into IT infrastructure, compliance, and security metrics.</>,
-      <>Engineered scalable REST APIs using Node.js, Express.js, and PostgreSQL, handling <Highlight>5M+ records</Highlight> via indexing, partitioning, and query optimization.</>,
-      <>Developed a dynamic export and upload feature supporting multiple file formats, reducing manual data operations.</>,
-      <>Optimized database performance with <Highlight>Sequelize ORM and SQL</Highlight>, eliminating redundant queries and reducing response times under high load.</>,
-      <>Integrated AI capabilities into core platform workflows to automate repetitive processes; implemented end-to-end test cases across key modules.</>,
-      <>Diagnosed and resolved <Highlight>80+ critical bugs</Highlight> across frontend and backend systems, improving platform stability.</>,
+      // <>Engineered scalable REST APIs using Node.js, Express.js, and PostgreSQL, handling <Highlight>5M+ records</Highlight> via indexing, partitioning, and query optimization.</>,
+      // <>Developed a dynamic export and upload feature supporting multiple file formats, reducing manual data operations.</>,
+      // <>Optimized database performance with <Highlight>Sequelize ORM and SQL</Highlight>, eliminating redundant queries and reducing response times under high load.</>,
+      // <>Integrated AI capabilities into core platform workflows to automate repetitive processes; implemented end-to-end test cases across key modules.</>,
+      // <>Diagnosed and resolved <Highlight>80+ critical bugs</Highlight> across frontend and backend systems, improving platform stability.</>,
     ],
   },
   {
@@ -64,9 +64,9 @@ const EXPERIENCE = [
     location: 'Remote',
     bullets: [
       <>Developed web scraping pipelines using <Highlight>Selenium and Python</Highlight> to extract and process structured data from external sources for internal research use.</>,
-      <>Contributed to UX design decisions and assisted in creating wireframes and prototypes to improve user experience across key product flows.</>,
-      <>Designed and delivered Proof-of-Concept (POC) presentations to mentors, covering research, architecture, and design proposals.</>,
-      <>Built and maintained reusable UI components and responsive interfaces using Vue.js and Vuetify for final year industry project.</>,
+      // <>Contributed to UX design decisions and assisted in creating wireframes and prototypes to improve user experience across key product flows.</>,
+      // <>Designed and delivered Proof-of-Concept (POC) presentations to mentors, covering research, architecture, and design proposals.</>,
+      // <>Built and maintained reusable UI components and responsive interfaces using Vue.js and Vuetify for final year industry project.</>,
     ],
   },
 ];
