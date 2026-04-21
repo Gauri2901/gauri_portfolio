@@ -52,8 +52,8 @@ export default function Sidebar({ active, onNav, scrollProgress }: Props) {
         <div style={{ position: 'relative', marginBottom: 16 }}>
           <div
             style={{
-              width: 108,
-              height: 108,
+              width: 180,
+              height: 180,
               borderRadius: '50%',
               border: '2px solid #EF9F27',
               overflow: 'hidden',
@@ -61,9 +61,13 @@ export default function Sidebar({ active, onNav, scrollProgress }: Props) {
             }}
           >
             <img
-              src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop"
+              src="/profile-pic.jpeg"
               alt="Gauri Borle"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              style={{
+                width: '150%',
+                height: '150%',
+                objectFit: 'cover',
+              }}
             />
           </div>
           <div
