@@ -199,7 +199,7 @@ export default function Sidebar({ active, onNav, scrollProgress }: Props) {
   return (
     <aside
       style={{
-        width: 260, minWidth: 260, height: '100dvh',
+        width: 280, minWidth: 280, height: '100dvh',
         background: '#F3F0E8', borderRight: '1px solid #E8E4DC',
         display: 'flex', flexDirection: 'column',
         position: 'sticky', top: 0, overflow: 'hidden',
@@ -209,7 +209,7 @@ export default function Sidebar({ active, onNav, scrollProgress }: Props) {
 
       <div style={{ padding: '36px 24px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{ marginBottom: 16 }}>
-          <div style={{ width: 160, height: 160, borderRadius: '50%', border: '2px solid #EF9F27', overflow: 'hidden', background: '#E8E4DC' }}>
+          <div style={{ width: 180, height: 180, borderRadius: '50%', border: '2px solid #EF9F27', overflow: 'hidden', background: '#E8E4DC' }}>
             <img
               src="/profilepic.jpeg"
               alt="Gauri Borle"
@@ -217,14 +217,14 @@ export default function Sidebar({ active, onNav, scrollProgress }: Props) {
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
-                objectPosition: '60% 20%', // 👉 move right + up
-                transform: 'scale(1.8) translate(12px, -3px)', // 👉 right + up
+                objectPosition: '50% 20%', // 👉 move right + up
+                transform: 'scale(1.9) translate(12px, -1px)', // 👉 right + up
               }}
             />   
           </div>
         </div>
         <div style={{ textAlign: 'center', width: '100%' }}>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 600, fontSize: 18, color: '#2C2C2A' }}>Gauri Borle</div>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontWeight: 600, fontSize: 22, color: '#2C2C2A' }}>Gauri Borle</div>
           <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#888780', marginTop: 5 }}>Software Engineer</div>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: '#888780', marginTop: 6 }}>// Malkapur, Maharashtra</div>
           <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 18 }}>
@@ -233,7 +233,7 @@ export default function Sidebar({ active, onNav, scrollProgress }: Props) {
                 style={{ width: 36, height: 36, borderRadius: 8, border: '1px solid #E8E4DC', background: '#FAFAF7', color: '#888780', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '1px 1px 0 #E8E4DC', textDecoration: 'none', transition: 'all 0.15s' }}
                 onMouseEnter={e => { e.currentTarget.style.color = '#EF9F27'; e.currentTarget.style.borderColor = '#EF9F27'; e.currentTarget.style.boxShadow = '1px 1px 0 #EF9F27'; }}
                 onMouseLeave={e => { e.currentTarget.style.color = '#888780'; e.currentTarget.style.borderColor = '#E8E4DC'; e.currentTarget.style.boxShadow = '1px 1px 0 #E8E4DC'; }}>
-                <Icon size={16} strokeWidth={1.7} />
+                <Icon size={18} strokeWidth={1.7} />
               </a>
             ))}
           </div>
