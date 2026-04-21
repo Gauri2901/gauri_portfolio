@@ -65,7 +65,7 @@ const PROJECTS: Project[] = [
     ],
     tech: ['React', 'TypeScript', 'Node.js', 'MongoDB', 'Razorpay'],
     links: { github: 'https://github.com/gauriborle', live: 'https://art-case-frontend.vercel.app/' },
-    img: 'https://images.pexels.com/photos/1266808/pexels-photo-1266808.jpeg?auto=compress&cs=tinysrgb&w=900&h=420&fit=crop',
+    img: 'public/art-case.png',
   },
   {
     type: 'freelance-split',
@@ -377,13 +377,13 @@ function FullProjectCard({ project, index }: { project: FullProject; index: numb
               transition: 'transform 0.35s ease',
             }}
           />
-          <div
+          {/* <div
             style={{
               position: 'absolute',
               inset: 0,
               background: 'linear-gradient(180deg, rgba(44,44,42,0.05), rgba(44,44,42,0.55))',
             }}
-          />
+          /> */}
           {/* <div
             style={{
               position: 'absolute',
