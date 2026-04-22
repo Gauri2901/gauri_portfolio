@@ -21,11 +21,11 @@ function Highlight({ children }: { children: React.ReactNode }) {
   return (
     <span
       style={{
-        background: '#FEF3DC',
+        // fontWeight: 600,
         color: '#BA7517',
+        background: '#fcf8f0',
         borderRadius: 3,
         padding: '0 5px',
-        fontWeight: 500,
       }}
     >
       {children}
@@ -49,12 +49,13 @@ const EXPERIENCE = [
     dates: 'Aug 2024 – Present',
     location: 'Shegoan, Maharashtra',
     bullets: [
-      <>Designed interactive dashboards and reusable UI components using <Highlight>Vue.js and Vuetify</Highlight>, enabling real-time visibility into IT infrastructure, compliance, and security metrics.</>,
-      <>Engineered scalable REST APIs using Node.js, Express.js, and PostgreSQL, handling <Highlight>5M+ records</Highlight> via indexing, partitioning, and query optimization.</>,
-      <>Developed a dynamic export and upload feature supporting multiple file formats, reducing manual data operations.</>,
-      <>Optimized database performance with <Highlight>Sequelize ORM and SQL</Highlight>, eliminating redundant queries and reducing response times under high load.</>,
-      <>Integrated AI capabilities into core platform workflows to automate repetitive processes; implemented end-to-end test cases across key modules.</>,
-      <>Diagnosed and resolved <Highlight>80+ critical bugs</Highlight> across frontend and backend systems, improving platform stability.</>,
+      <>Built <Highlight>reusable UI components</Highlight> with Vue.js and Vuetify for consistent, scalable interfaces across enterprise client platforms.</>,
+      <>Engineered REST APIs using <Highlight>Node.js, Express.js, and PostgreSQL</Highlight>, handling <Highlight>5M+ records</Highlight> via indexing, partitioning, and query optimization.</>,
+      <>Developed an export and upload feature supporting <Highlight>5+ file formats</Highlight>, reducing manual data operations across the platform.</>,
+      <>Built a customizable <Highlight>dashboard platform</Highlight> with <Highlight>widget-based layouts</Highlight>, dashboard cloning, and custom query-based metrics for real-time IT infrastructure and compliance visibility.</>,
+      <>Optimized database performance using <Highlight>Sequelize ORM and SQL</Highlight>, eliminating redundant queries and reducing response times under high load.</>,
+      <>Integrated <Highlight>AI APIs</Highlight> to automate 3+ repetitive processes; implemented end-to-end test coverage across key modules, improving release reliability.</>,
+      <>Resolved <Highlight>80+ critical bugs</Highlight> across frontend and backend, reducing production incident rate by <Highlight>30%</Highlight>.</>,
     ],
   },
   {
@@ -63,11 +64,11 @@ const EXPERIENCE = [
     role: 'Software Engineer Intern',
     dates: 'Jan 2024 – Mar 2024',
     location: 'Milford, USA',
-    bullets: [
-      <>Developed web scraping pipelines using <Highlight>Selenium and Python</Highlight> to extract and process structured data from external sources for internal research use.</>,
-      <>Contributed to UX design decisions and assisted in creating wireframes and prototypes to improve user experience across key product flows.</>,
-      <>Designed and delivered Proof-of-Concept (POC) presentations to mentors, covering research, architecture, and design proposals.</>,
-      <>Built and maintained reusable UI components and responsive interfaces using Vue.js and Vuetify for final year industry project.</>,
+        bullets: [
+      <>Built <Highlight>web scraping</Highlight> pipelines using <Highlight>Selenium and Python</Highlight> to extract structured data from external sources for internal research.</>,
+      <>Led UX decisions for <Highlight>3 product flows</Highlight>; created wireframes and prototypes in <Highlight>Figma</Highlight>, improving experience across core features.</>,
+      <>Delivered <Highlight>POC presentations</Highlight> to mentors covering research, architecture, and design proposals.</>,
+      <>Built <Highlight>10+ reusable UI components</Highlight> using Vue.js and Vuetify for the final year industry project.</>,
     ],
   },
 ];
